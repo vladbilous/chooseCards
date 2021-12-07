@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Card Game</title>
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"-->
+<!--          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div id="app" class="content">
+
+        <div class="menu">
+            <a href="">Video</a>
+            <a href="">Extra</a>
+            <a href="">Audio</a>
+        </div>
+
+    <!--    <h1 v-for="(theme, index) in themes" > <p v-if="index+1 === currentPage">{{theme}}</p></h1>-->
+    <!--    :href=`#page=${currentPage}`-->
+        <div class="block-cards">
+            <p class="title-games" v-for="(theme, index) in themes">
+                <a @click="addStor(index+1)" :href=`games.html#page=${index+1}`>
+                    <span>{{ index+1 }}) </span>
+                    {{ theme }}
+                </a>
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        localStorage.removeItem("page")
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+    <script src="pages/cards.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

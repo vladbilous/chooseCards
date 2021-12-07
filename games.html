@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Card Game</title>
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"-->
+<!--          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="main.css">
+    <!-- development version, includes helpful console warnings -->
+</head>
+<body>
+<!--<div id="app" class="container">-->
+<div id="app" class="content">
+
+<!--    <div class="row">-->
+<!--        <div class="col-12">-->
+<!--            <div class="row justify-content-md-center">-->
+<!--                <div v-for="card in memoryCards" class="col-3 flip-container" :class="{ 'flipped': card.isFlipped, 'matched' : card.isMatched }" @click="flipCard(card)">-->
+<!--                    <div class="memorycard">-->
+<!--                        <div class="front border rounded shadow"><img width="170px" height="170px" src="img/back.png"></div>-->
+<!--                        <div v-if="card.isWord" class="back rounded  text-back">{{card.name}}</div>-->
+<!--                        <div v-else class="back rounded border"><img class="img-answer" :src="'img/'+card.img"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div class="menu">
+        <a href="#">Video</a>
+        <a href="#">Extra</a>
+        <a href="#">Audio</a>
+    </div>
+
+    <div class="block-cards">
+        <div style="display: none" class=" ">
+            <div class="turns p-3"><span class="btn btn-info">Turns : <span class="badge" :class="finish ? 'badge-success' : 'badge-light'">{{turns}}</span> </span></div>
+            <div class="totalTime p-3"><span class="btn btn-info">Total Time : <span class="badge" :class="finish ? 'badge-success' : 'badge-light'">{{min}} : {{sec}}</span></span></div>
+        </div>
+
+        <div class="title-block">
+            <div class="block-theme">
+                <h1 v-for="(theme, index) in themes" v-if="index+1 === currentPage">{{theme}}</h1>
+            </div>
+
+            <div class="block-pagination">
+                <a class="next-page" :href=`#page=${currentPage}`
+                   :class="{disabled: nextDisabled}"
+                   @click="nextPage">Weiter<img class="arr-right" src="img/arr-right.png">
+                </a>
+                <a class="prew-page" :href=`#page=${currentPage}`
+                   :class="{disabled: prevDisabled}"
+                   @click="previousPage"><img class="arr-left" src="img/arr-right.png"> Zurück</a>
+            </div>
+
+        </div>
+        <p class="find-pare">Finde Paare.</p>
+
+        <div class="cards">
+            <div v-for="card in memoryCards" class="all-cards flip-container" :class="{ 'flipped': card.isFlipped, 'matched' : card.isMatched }" @click="flipCard(card)">
+                <div class="memorycard">
+
+                    <img class="check" v-if="card.isFlipped === true && card.isMatched === true" src="img/chech.png">
+<!--                    <img class="n-check" v-else-if="card.isFlipped === true && flippedCards.length === 2 " src="img/n-check.png">-->
+<!--                    <img class="n-check" v-if="card.isFlipped === true && card.isMatched === false && card.isWord === true " src="img/n-check.png">-->
+                    <div class="front border rounded shadow "><img class="img-background" src="img/back.png"></div>
+                    <div v-if="card.isWord" class="back rounded  text-back"><p>{{card.name}}</p></div>
+                    <div v-else class="back rounded border"><img class="img-answer" :src="'img/'+card.img"></div>
+                </div>
+            </div>
+        </div>
+        <div class="arrows">
+            <a class="home" href="index.html"><img class="home-img" src="img/home.png"></a>
+            <span class="restart"
+                  @click="reset"
+                  :disabled="!start">
+                <img class="restart-img" src="img/restart.png">
+            </span>
+        </div>
+    </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+<script src="pages/cards.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
